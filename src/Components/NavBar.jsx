@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { removeUser } from "../utils/userSlice";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const user = useSelector((store) => store.user);
@@ -23,12 +23,12 @@ const NavBar = () => {
 
       {/* Brand */}
       <div className="flex-1">
-        <a className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
+        <Link to="/" className="flex items-center gap-2 cursor-pointer">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
             <span className="text-primary-content font-bold text-sm">DT</span>
           </div>
-          <span className="text-xl font-bold text-primary">DevTinder</span>
-        </a>
+            <span className="text-xl font-bold text-primary">DevTinder</span>
+        </Link>
       </div>
 
       {user ? (
@@ -64,17 +64,17 @@ const NavBar = () => {
               </li>
 
               <li>
-                <a onClick={() => navigate("/profile")} className="gap-3">
+                <Link to="/profile" className="gap-3">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                     <circle cx="12" cy="7" r="4" />
                   </svg>
                   Profile
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a onClick={() => navigate("/connections")} className="gap-3">
+                <Link to="/connections" className="gap-3">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                     <circle cx="9" cy="7" r="4" />
@@ -82,28 +82,31 @@ const NavBar = () => {
                     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                   </svg>
                   Connections
-                </a>
+                </Link>
               </li>
 
               <li>
-                <a onClick={() => navigate("/settings")} className="gap-3">
+                <Link to="/settings" className="gap-3">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="12" cy="12" r="3" />
                     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
                   </svg>
                   Settings
-                </a>
+                </Link>
               </li>
 
               <li className="mt-1 border-t border-base-200 pt-1">
-                <a onClick={handleLogout} className="gap-3 text-error hover:bg-error/10">
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-3 text-error hover:bg-error/10 w-full text-left"
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                     <polyline points="16 17 21 12 16 7" />
                     <line x1="21" y1="12" x2="9" y2="12" />
                   </svg>
                   Logout
-                </a>
+                </button>
               </li>
 
             </ul>
