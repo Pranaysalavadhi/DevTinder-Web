@@ -29,6 +29,7 @@
  - show Toast Message on save of profile
  - New page - See all my connections
  - New page - See all my requests
+ - Feature - Accept/Reject connection request
 
  Body
      NavBar
