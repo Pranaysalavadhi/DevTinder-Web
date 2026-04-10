@@ -19,6 +19,15 @@
  - Add redux devtools in chrome
  - Login and see if your data is coming properly in the store
  - NavBar should update as soon as user logs in
+ 
+ - You shouldn't be access other routes without login
+ - If Token is not present redirect to user to login page
+ - Logout feacture
+ - Get feed and add the feed in the store
+ - build the userCard on feed
+ - Edit profile Feature
+ - show Toast Message on save of profile
+ - See all my connections
 
  Body
      NavBar
