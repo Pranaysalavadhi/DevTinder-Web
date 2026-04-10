@@ -1,10 +1,30 @@
+import axios from "axios";
+import { BASE_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { removeUserFromFeed } from "../utils/feedSlice";
+
 const UserCard = ({ user }) => {
   if (!user) return <p>User not found!!</p>;
 
-  const { firstName, lastName, age, about, photoUrl } = user;
+  const { _id, firstName, lastName, age, about, photoUrl } = user;
+
+  const dispatch = useDispatch();
+
+  const handleSendRequest = async (status, _id) =>{
+     try{
+       const res = await axios.post(
+        BASE_URL + "/request/send/"+ status + "/" + _id,
+        {},
+        {withCredentials : true});
+        dispatch(removeUserFromFeed(user._id));
+        
+     }catch(err){
+      console.log(err.message);
+     }
+  }
 
   return (
-    <div className="card bg-base-200 w-80 shadow-xl rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105">
+    <div className="card bg-base-300 w-96 shadow-xl rounded-2xl overflow-hidden transition-transform duration-300 hover:scale-105">
       
       {/* Image */}
       <figure className="h-60">
@@ -31,12 +51,8 @@ const UserCard = ({ user }) => {
 
         {/* Buttons */}
         <div className="card-actions justify-between mt-4">
-          <button className="btn btn-outline btn-error btn-sm">
-            Ignore
-          </button>
-          <button className="btn btn-primary btn-sm">
-            Interested
-          </button>
+          <button className="btn btn-outline btn-error btn-sm" onClick={() =>handleSendRequest("ignored",_id)}>Pass</button>
+          <button className="btn btn-primary btn-sm" onClick={() => handleSendRequest("interested",_id)}>Collab</button>
         </div>
       </div>
     </div>
