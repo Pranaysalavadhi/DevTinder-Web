@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Body from "./Components/Body"
-import Login from "./Components/Login"
-import Profile from "./Components/Profile"
 import { Provider } from "react-redux"
 import appStore from "./utils/appStore"
+import Body from "./Components/Body"
+import Login from "./Components/Login"
+import LandingPage from "./Components/LandingPage"
 import Feed from "./Components/Feed"
+import Profile from "./Components/Profile"
+import EditProfile from "./Components/EditProfile"   
 import Connections from "./Components/Connections"
 import Requests from "./Components/Requests"
 
@@ -14,15 +16,17 @@ function App() {
       <BrowserRouter basename="/">
         <Routes>
 
-          {/* Login is standalone — no NavBar/Footer */}
+          {/* Public Routes */}
+          <Route path="/"      element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
 
-          {/* Everything inside Body is protected */}
-          <Route path="/" element={<Body />}>
-            <Route index element={<Feed />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="connections" element={<Connections/>} />
-            <Route path="requests" element={<Requests/>} />
+          {/* Protected Routes */}
+          <Route path="/app" element={<Body />}>
+            <Route index                element={<Feed />}        />
+            <Route path="profile"       element={<Profile />}     />
+            <Route path="edit"          element={<EditProfile />} />  
+            <Route path="connections"   element={<Connections />} />
+            <Route path="requests"      element={<Requests />}    />
           </Route>
 
         </Routes>
